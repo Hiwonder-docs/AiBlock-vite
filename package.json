@@ -1,0 +1,26 @@
+{
+  "name": "dadablock-vite",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "dev:latest": "node scripts/dev_version.mjs latest",
+    "dev:advanced-kit": "node scripts/dev_version.mjs advanced-kit",
+    "dev:standard-kit": "node scripts/dev_version.mjs standard-kit",
+    "dev:ultimate-kit": "node scripts/dev_version.mjs ultimate-kit",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:stage-main": "node scripts/stage_main_site.mjs",
+    "build:latest": "node scripts/build_version.mjs latest",
+    "build:advanced-kit": "node scripts/build_version.mjs advanced-kit",
+    "build:standard-kit": "node scripts/build_version.mjs standard-kit",
+    "build:ultimate-kit": "node scripts/build_version.mjs ultimate-kit",
+    "build:all": "node scripts/build_version.mjs latest && node scripts/build_version.mjs standard-kit && node scripts/build_version.mjs advanced-kit && node scripts/build_version.mjs ultimate-kit"
+  },
+  "dependencies": {
+    "vitepress": "^1.6.4"
+  },
+  "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "sharp": "^0.34.5"
+  }
+}

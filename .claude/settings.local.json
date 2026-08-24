@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd \"d:\\\\Backup\\\\Documents\\\\vitepress使用教程\\\\工程文件\\\\通用工程\\\\docs\\\\page\\\\18.传感器基础开发课程.md\")",
+      "Bash(xxd)",
+      "Bash(python fix_quotes.py)",
+      "Bash(node fix_quotes.js)"
+    ]
+  }
+}
