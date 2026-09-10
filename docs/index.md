@@ -1,6 +1,6 @@
 ---
 layout: page-redirect
-redirectTo: /docs/1.%20Kit%20Introduction.html
+redirectTo: /docs/index.html
 ---
 
 Redirecting to content page...
