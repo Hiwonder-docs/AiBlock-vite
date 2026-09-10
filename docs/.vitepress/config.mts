@@ -675,6 +675,49 @@ function docModuleBlockPlugin(md: any) {
   md.renderer.rules.doc_level_two_block_close = () => '</section>\n'
 }
 
+function serveStaticAssetsUnderBase() {
+  const staticPrefix = `${docsBase}_static/`
+  const staticRoot = path.resolve(process.cwd(), 'docs', '_static')
+
+  return {
+    name: 'serve-static-assets-under-base',
+    configureServer(server: any) {
+      server.middlewares.use((req: any, res: any, next: any) => {
+        if (!req.url) {
+          next()
+          return
+        }
+
+        let pathname = ''
+        try {
+          pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
+        } catch {
+          next()
+          return
+        }
+
+        if (!pathname.startsWith(staticPrefix)) {
+          next()
+          return
+        }
+
+        const relativePath = pathname.slice(staticPrefix.length)
+        const filePath = path.resolve(staticRoot, relativePath)
+        if (!filePath.startsWith(staticRoot) || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+          next()
+          return
+        }
+
+        if (path.extname(filePath).toLowerCase() === '.pdf') {
+          res.setHeader('Content-Type', 'application/pdf')
+        }
+
+        fs.createReadStream(filePath).pipe(res)
+      })
+    }
+  }
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: docsBase,
@@ -694,6 +737,7 @@ export default defineConfig({
       preserveBrokenAbsoluteImages(),
       reserveLocalImageDimensions(),
       lazyLoadHtmlImages(),
+      serveStaticAssetsUnderBase(),
       {
         name: 'ignore-missing-images',
         enforce: 'pre' as const,

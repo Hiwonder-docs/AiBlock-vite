@@ -1,4 +1,4 @@
-import { mkdir, rm, cp, readdir, readFile, writeFile, unlink } from 'fs/promises'
+import { access, mkdir, rm, cp, readdir, readFile, writeFile, unlink } from 'fs/promises'
 import { fileURLToPath } from 'url'
 import { dirname, join, extname, basename } from 'path'
 import { setTimeout as delay } from 'timers/promises'
@@ -27,8 +27,22 @@ await cp(
 )
 
 await convertRasterImagesToWebp(targetDir)
+await copyPdfAssets(targetDir)
 
 console.log('Staged files to:', targetDir)
+
+async function copyPdfAssets(targetDir) {
+  const pdfSourceDir = join(repositoryRoot, 'content', version, '_static', 'shared', 'pdf')
+  if (!await pathExists(pdfSourceDir)) {
+    return
+  }
+
+  await cp(
+    pdfSourceDir,
+    join(targetDir, '_static', 'shared', 'pdf'),
+    { recursive: true }
+  )
+}
 
 async function walkFiles(rootDir) {
   const entries = await readdir(rootDir, { withFileTypes: true })
@@ -112,5 +126,14 @@ async function writeTextFileWithRetry(filePath, content, retries = 5) {
 
       await delay(200 * (attempt + 1))
     }
+  }
+}
+
+async function pathExists(path) {
+  try {
+    await access(path)
+    return true
+  } catch {
+    return false
   }
 }
