@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { inBrowser, useData, useRoute } from 'vitepress'
+import { inBrowser, useData, useRoute, withBase } from 'vitepress'
 import PageRedirect from './PageRedirect.vue'
 import ImageViewer from './ImageViewer.vue'
 import FeedbackWidget from './FeedbackWidget.vue'
@@ -18,11 +18,27 @@ const VERSION_LABELS: Record<string, string> = {
 }
 
 function detectCurrentVersion(): string {
-  if (!inBrowser) return ALL_VERSIONS[0]
+  const pathname = inBrowser ? location.pathname : withBase('/')
   for (const v of ALL_VERSIONS) {
-    if (location.pathname.includes(`/en/${v}/`)) return v
+    if (pathname.includes(`/en/${v}/`)) return v
   }
   return ALL_VERSIONS[0]
+}
+
+const currentVersion = computed(() => {
+  void route.path
+  return detectCurrentVersion()
+})
+
+function handleMobileVersionChange(event: Event) {
+  if (!inBrowser) return
+  const targetVersion = (event.target as HTMLSelectElement).value
+  const current = detectCurrentVersion()
+  if (targetVersion === current) return
+
+  const versionRootPattern = new RegExp(`/en/${current}(?:/.*)?$`)
+  const targetPath = location.pathname.replace(versionRootPattern, `/en/${targetVersion}/`)
+  window.location.replace(`${targetPath}${location.search}${location.hash}`)
 }
 
 function injectVersionSwitcher() {
@@ -1093,7 +1109,24 @@ onBeforeUnmount(() => {
 
 <template>
   <PageRedirect v-if="isRedirectPage" />
-  <component :is="DefaultTheme.Layout" v-else />
+  <component :is="DefaultTheme.Layout" v-else>
+    <template #nav-screen-content-before>
+      <div class="mobile-version-switcher">
+        <label class="mobile-version-switcher__label" for="mobile-version-select">Version</label>
+        <select
+          id="mobile-version-select"
+          class="mobile-version-switcher__select"
+          :value="currentVersion"
+          aria-label="Documentation version"
+          @change="handleMobileVersionChange"
+        >
+          <option v-for="version in ALL_VERSIONS" :key="version" :value="version">
+            {{ VERSION_LABELS[version] }}
+          </option>
+        </select>
+      </div>
+    </template>
+  </component>
   <slot name="layout-bottom" />
   <ImageViewer
     v-if="lightboxSrc"
