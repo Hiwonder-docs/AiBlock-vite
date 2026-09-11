@@ -1,0 +1,200 @@
+/* 添加返回主项目的按钮 */
+.return-to-main {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.return-to-main:hover {
+    background: #45a049;
+}
+
+/* 为移动端调整位置 */
+@media (max-width: 768px) {
+    .return-to-main {
+        top: 60px;
+        right: 10px;
+    }
+}
+section p {
+    margin: 0 0 18px;
+}
+.wy-side-scroll .wy-menu-vertical p.caption{
+     font-size: 16px;
+     color: #fff;
+     padding: 0 .618em;
+}
+.highlight span.err{
+    border:none;
+}
+.caption{
+    display:none;
+}
+.wy-menu-vertical li button.toctree-expand{
+    color: #838383;
+}
+.wy-nav-side .wy-menu-vertical header, .wy-menu-vertical p.caption{
+    color: #f98800;
+    text-transform: unset;
+}
+.wy-nav-side .wy-menu-vertical li.toctree-l2 button.toctree-expand{
+    pointer-events:none;
+}
+.wy-menu-vertical > ul:last-child > li:last-child >a{
+    display: block;
+    width: fit-content;
+    margin: 1.618em;
+    background: #f98800;
+    color: #fff;
+    border-radius: 8px;
+}
+.wy-nav-side .wy-side-nav-search input[type=text]{
+     border-color: #F29401;
+}
+.wy-side-nav-search>div.switch-menus>div.language-switch, .wy-side-nav-search>div.switch-menus>div.version-switch
+{
+    background-color:#f1c269;
+}
+.wy-side-scroll .wy-side-nav-search>div.switch-menus>div.version-switch select{
+    color: #000;
+    text-transform: capitalize;
+    margin-right: -1.7rem;
+}
+.wy-side-scroll .wy-side-nav-search>div.switch-menus>div.version-switch select:hover{
+    color: #000;
+}
+.wy-side-scroll .wy-side-nav-search>div.switch-menus>div.version-switch:after{
+    color: #000;
+    font-size: 23px;
+    margin-left: -15px;
+    margin-top: 0px;
+}
+.wy-breadcrumbs-aside a{
+    color: #F29401;
+}
+section .rst-content .admonition{
+    background: #e3e3e3;
+}
+section .rst-content .note .admonition-title{
+    color: #F29401;
+    background: #343131;
+}
+.wy-grid-for-nav .wy-side-nav-search{
+    text-align: left;
+}
+.wy-grid-for-nav .wy-side-nav-search>a{
+    color: #000;
+}
+.step{
+    background: #e3e3e3;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 5px 0;
+}
+
+.wy-side-scroll .wy-menu-vertical .toctree-l1.current .h-current.toctree-l2>ul{
+    display:block !important;
+}
+.wy-side-scroll .wy-menu-vertical .toctree-l1.current .current.toctree-l2>ul{
+    display:none;
+}
+.wy-menu-vertical .toctree-l2.h-current>a button.toctree-expand:before{
+    content: "\f147" !important;
+}
+.wy-menu-vertical .toctree-l2.current>a button.toctree-expand:before{
+    content: "\f196";
+}
+.wy-menu-vertical li.toctree-l2.h-current li.toctree-l3>a {
+    padding: .4045em 1.618em .4045em 4.045em;
+}
+
+table td{
+    white-space: unset !important;
+}
+
+.rst-content section ol li{
+    margin-bottom: 15px;
+}
+
+table{
+    min-width: 50%;
+}
+
+.common_img{
+    display: block;
+    margin: 0 auto 24px;
+}
+table.highlighttable{
+    margin: 0 auto;
+}
+.half_img{
+    width:500px;
+    display: block;
+    margin: 0 auto 24px;
+}
+
+table {
+    min-width: 50%;
+    margin: 0 auto 24px;
+}
+
+.rst-content tt.literal, .rst-content code.literal, .highlight {
+    background: #f0f0f0;
+}
+
+.rst-content table.docutils-nobg{
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #e1e4e5;
+    margin-bottom: 24px;
+}
+
+.rst-content table.docutils-nobg th{
+    border-bottom: 1px solid #e1e4e5;
+    border-left: 1px solid #e1e4e5;
+    padding: 8px 16px;
+}
+
+.rst-content table.docutils-nobg td{
+    vertical-align: middle;
+    font-size: 90%;
+    margin: 0;
+    overflow: visible;
+    padding: 8px 16px;
+    border-bottom: 1px solid #e1e4e5;
+    border-left: 1px solid #e1e4e5;
+}
+iframe[title="Assembly Guide PDF"] {
+  display: block;
+  width: 100%;
+  height: min(850px, 80vh);
+  border: 1px solid #d9d9d9;
+}
+
+@media (max-width: 768px) {
+  iframe[title="Assembly Guide PDF"] {
+    height: 70vh;
+  }
+}
+@media screen and (min-width: 1400px) {
+    .wy-grid-for-nav .wy-nav-side, .wy-grid-for-nav .wy-side-nav-search, .wy-grid-for-nav .wy-menu {
+        width: 320px;
+    }
+    .wy-grid-for-nav .wy-side-scroll{
+        width: 340px;
+    }
+    .wy-grid-for-nav .wy-nav-content-wrap{
+        margin-left: 320px;
+    }
+    .wy-grid-for-nav .wy-nav-content{
+        max-width: 1080px;
+    }
+}

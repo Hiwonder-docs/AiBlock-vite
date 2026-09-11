@@ -1110,7 +1110,7 @@ onBeforeUnmount(() => {
 <template>
   <PageRedirect v-if="isRedirectPage" />
   <component :is="DefaultTheme.Layout" v-else>
-    <template #nav-screen-content-before>
+    <template #nav-screen-content-after>
       <div class="mobile-version-switcher">
         <label class="mobile-version-switcher__label" for="mobile-version-select">Version</label>
         <select

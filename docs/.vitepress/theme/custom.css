@@ -916,9 +916,9 @@
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--vp-c-divider);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--vp-c-divider);
   }
 
   .mobile-version-switcher__label {

@@ -1,6 +1,6 @@
-# AiBlock
+---
+layout: page-redirect
+redirectTo: /docs/1.%20Kit%20Introduction.html
+---
 
-<div class="custom-block note">
-  <p class="custom-block-title">NOTE</p>
-  <p>Stay tuned.</p>
-</div>
+Redirecting to content page...
